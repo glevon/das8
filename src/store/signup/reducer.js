@@ -4,7 +4,7 @@ let initState ={
     password:"",
 }
 
-export default function signupReducer(state=initState,action) {
+export  function signupReducer(state=initState,action) {
     switch(action.type){
         case "changeName":return{
             ...state,

@@ -3,7 +3,7 @@ let initState ={
     password:"",
 }
 
-export default function loginReducer(state=initState,action) {
+export  function loginReducer(state=initState,action) {
     switch(action.type){
         case "changeEmail":return{
             ...state,

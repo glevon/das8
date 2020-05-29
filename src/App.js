@@ -3,7 +3,7 @@ import {BrowserRouter,Route,Link} from "react-router-dom"
 import Login from './components/Login';
 import Profile from './components/Profile';
 import Signup from './components/Signup';
-import {creatStore, createStore} from "redux"
+import {createStore} from "redux"
 import {Provider} from 'react-redux'
 import reducers from "./store/reducers"
 

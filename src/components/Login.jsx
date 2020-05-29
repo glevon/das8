@@ -51,7 +51,7 @@ class Login extends Component {
         return (
             <div>
                     <h4 className="text-danger text-center">{this.state.error}</h4>
-                    <div className="w-25 mx-auto alert-primary p-3">
+                    <div className="w-25 mx-auto alert-success p-3">
                         <h1 className="text-center">Login</h1>
                         Email:<input  data-id="changeEmail" onChange={this.change.bind(this)} value ={this.props.userData.email} type="email" className="form-control" />
                         Password:<input  data-id="changePassword"  onChange={this.change.bind(this)} value ={this.props.userData.password} type="password"  className="form-control" />

@@ -24,17 +24,20 @@ class Profile extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                    {
-                                Object.values(this.props.showData.user).map((a,i)=>{
-                                    return(
-                                        <th key={i}>
-                                            {a}
-                                        </th>
+                    <tr>
 
-                                    )
-                                })
-                            }
-                        
+                    {
+                        Object.values(this.props.showData.user).map((a,i)=>{
+                            return(
+                                <td key={i}>
+                                    {a}
+                                </td>
+
+                            )
+                        })
+                    }
+                    </tr>
+
                     </tbody>
 
                 </table>
