@@ -18,6 +18,12 @@ export  default function addTaskReduser(state=globalState,action) {
             ...state,
             deadline:action.value
         }
+        case "empty":return{
+            ...state,
+            name:"",
+            description:"",
+            deadline:"",
+        }
     }
     return state
 }

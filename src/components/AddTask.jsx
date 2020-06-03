@@ -15,7 +15,9 @@ class AddTask extends Component {
         task.user_id =this.props.userData.user.id
         
         Axios.post("http://localhost:4500/addTask",{table:"tasks",data:task})
-        .then(r=>{            
+        .then(r=>{       
+            alert("Your Task Successfully Added")     
+            this.props.changeData("empty")
 
         })
     }

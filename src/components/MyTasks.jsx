@@ -5,21 +5,35 @@ import myTasks from '../store/mytasks/action'
 
 
 class MyTasks extends Component {
-    constructor(props) {
-        super(props)   
-        Axios.post("http://localhost:4500/tasks",{table:"tasks",data:{user_id:this.props.userData.user.id}})
-        .then(r=>{
-            this.props.myTasks("addtasks", r.data)
-            
-        })
-        
-    }
     componentDidMount(){
         if(Object.keys(this.props.userData.user).length == 0){
             this.props.history.push('/login')
         }
+        Axios.post("http://localhost:4500/tasks",{table:"tasks",data:{user_id:this.props.userData.user.id}})
+        .then(r=>{
+            this.props.myTasks("addtasks", r.data)
+
+            
+        })
     }
-    delete(){
+    delete(t_id){
+        Axios.post("http://localhost:4500/delete", {table:"tasks", id:t_id})
+        .then(r=>{
+            console.log(r.data);
+            this.componentDidMount();
+            this.setState({});
+        })
+
+    }
+    check(t_id,st){
+        Axios.post("http://localhost:4500/changeStatus", {table:"tasks",id:t_id, data:{status:st}})
+        .then(r=>{
+            console.log(r.data);
+            this.componentDidMount();
+            this.setState({});
+        })
+        // console.log(t_id,st);
+        
 
     }
     
@@ -30,19 +44,8 @@ class MyTasks extends Component {
                 {/* {console.log(this.props.tasksData.tasks)} */}
                 {/* {console.log(this.props.tasksData.tasks[0])} */}
                 {/* {console.log(this.props.tasksData.tasks[0].id)} */}
-                {console.log(Object(this.props.tasksData.tasks[0]).id)}
+                {/* {console.log(Object(this.props.tasksData.tasks[0]).id)} */}
 
-                {/* {console.log(Object.keys(this.props.tasksData.tasks[0]))} */}
-
-                }
-
-                {/* {this.props.tasksData.tasks.map((a,i)=>{
-                    return(
-                        console.log(Object.keys(a))
-
-                    )
-
-                })} */}
                 
                 <table className="table table-hover">
                     <thead>
@@ -57,20 +60,25 @@ class MyTasks extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                    
-                    <tr>
-
                     {
-                        Object.values(Object(this.props.tasksData.tasks[0])).map((a,i)=>(
-                                <td key={i}>
-                                    {a}
-                                </td>
-
+                            Object(this.props.tasksData.tasks).map((a,i)=>(
+                                <tr key={i} style={a.status?{textDecorationLine:"line-through"}:{textDecorationLine:"none"}}>
+                                    {                                    
+                                        Object.values(a).map((item,index)=>(
+                                            <td key={index}>
+                                                {item}
+                                            </td>
+                                        ))
+                                    }
+                                    <td>
+                                        <input onClick={this.check.bind(this,a.id,1-a.status)} type="checkbox"  checked={a.status} className="form-check-input" value=""></input>
+                                    </td>
+                                    <td>
+                                        <button onClick={this.delete.bind(this,a.id)} className="btn btn-danger">Delete</button>
+                                    </td>
+                                </tr>
                             ))
-
-                    }
-                    </tr>
-
+                        }
                     </tbody>
                 </table>
             </div>
