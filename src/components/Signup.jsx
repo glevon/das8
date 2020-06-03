@@ -27,7 +27,7 @@ class Signup extends Component {
             }
         }
         if (this.state.error==="") {
-            Axios.post("http://localhost:4000/signup",{user:userInfo})
+            Axios.post("http://localhost:4500/signup",{table:"user",user:userInfo})
             .then(r=>{
                 // this.props.history.replace("/login")
                 this.props.history.push("/login")

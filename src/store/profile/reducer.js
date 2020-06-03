@@ -9,6 +9,10 @@ export  function profileReducer(state=profileData,action) {
             ...state,
             user:action.value
         }
+        case "logout": return {
+            user:{}
+        }
+  
 
     }
     return state

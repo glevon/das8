@@ -29,7 +29,7 @@ class Login extends Component {
             }
         }
         if (this.state.error==="") {
-            Axios.post("http://localhost:4000/login",{user:userInfo})
+            Axios.post("http://localhost:4500/login",{table:"user",user:userInfo})
             .then(r=>{
                 if (r.data[0]===undefined) {
                     this.state.error="Incorrect input data"
@@ -37,10 +37,7 @@ class Login extends Component {
                 }
                 else{
                     // this.props.history.replace("/Profile", "Name = "+r.data[0].name +" Email = " +r.data[0].email+" Password = "+ r.data[0].password)
-                    //  console.log(r.data[0].name);
-                    this.props.showData("save", r.data[0])
-                    console.log(r.data[0]);
-                    
+                    this.props.showData("save", r.data[0])                    
                     this.props.history.push("/profile")
                 }
             })
